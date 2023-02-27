@@ -27,7 +27,7 @@ public class M
 		String id, name, age;
 		
 		//obtaining input bytes from a file  
-		FileInputStream fis = new FileInputStream(new File("src/app1/students.xlsx"));  
+		FileInputStream fis = new FileInputStream("src/app1/students.xlsx");  
 		//creating workbook instance that refers to .xls file  
 //		HSSFWorkbook wb = new HSSFWorkbook(fis);   
 		XSSFWorkbook wb = new XSSFWorkbook(fis); 
@@ -45,15 +45,16 @@ public class M
 					case Cell.CELL_TYPE_NUMERIC:   //field that represents numeric cell type  
 						//getting the value of the cell as a number  
 						System.out.print(cell.getNumericCellValue()+ "\t\t");   
-						String sql1 = "INSERT INTO PERSON VALUES(" + cell.getNumericCellValue() + ",'" + cell.getNumericCellValue() + "'," + cell.getNumericCellValue() + ")";
-						stmt.execute(sql1);
+						//Number m = cell.getNumericCellValue();
+						//String sql1 = "INSERT INTO PERSON VALUES(" + cell.getNumericCellValue() + ",'" + cell.getNumericCellValue() + "'," + cell.getNumericCellValue() + ")";
+//						stmt.execute(sql1);
 						break;  
 					case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
 						//getting the value of the cell as a string  
 						System.out.print(cell.getStringCellValue()+ "\t\t");
-						String sql2 = "INSERT INTO PERSON VALUES(" + cell.getStringCellValue() + ",'" + cell.getStringCellValue() + "'," + cell.getStringCellValue() + ")";
-						stmt.execute(sql2);
-						break;  
+//						String sql2 = "INSERT INTO PERSON VALUES(" + cell.getStringCellValue() + ",'" + cell.getStringCellValue() + "'," + cell.getStringCellValue() + ")";
+//						stmt.execute(sql2);
+//						break;  
 				}  
 			}  
 			System.out.println();  
