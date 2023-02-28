@@ -4,7 +4,7 @@ import java.sql.*;
 import java.io.*;
 import java.util.*;
 
-public class  N
+public class N
 {
 	Connection con;
 	PreparedStatement ps;
