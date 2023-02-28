@@ -15,7 +15,7 @@ public class S
 	public static void main(String[] args)
 	{
 		Properties pr = new Properties();
-		try(FileReader fin = new FileReader("db.properties"))
+		try(FileReader fin = new FileReader("src/app1/db.properties"))
 		{
 			pr.load(fin);
 		}
@@ -27,14 +27,6 @@ public class S
 		String url = pr.getProperty("url");
 		String un = pr.getProperty("username");
 		String pw = pr.getProperty("password");
-		try
-		{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}
-		catch(ClassNotFoundException ex)
-		{
-			ex.printStackTrace();
-		}
 		
 		String sql = "SELECT * FROM PERSON";
 		
