@@ -7,7 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Q
+public class R
 {
 	public static void main(String[] args)
 	{
@@ -19,19 +19,15 @@ public class Q
 		{
 			ex.printStackTrace();
 		}
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String un = "system";
+		String pw = "admin";
+		String sql = "SELECT * FROM PERSON";
+		
+		try(Connection con = DriverManager.getConnection(url, un, pw);
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sql))//jdk 1.7 auto-close resouce
 		{
-			String url = "jdbc:oracle:thin:@localhost:1521:XE";
-			String un = "system";
-			String pw = "admin";
-			
-			con = DriverManager.getConnection(url, un, pw);
-			stmt = con.createStatement();
-			String sql = "SELECT * FROM PERSON";
-			rs = stmt.executeQuery(sql);
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cols = rsmd.getColumnCount();
 			for(int i = 1; i <= cols; i++)
@@ -52,46 +48,6 @@ public class Q
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				if(rs != null)
-				{
-					rs.close();
-					rs = null;
-				}
-			}
-			catch(SQLException ex)
-			{
-				ex.printStackTrace();
-			}
-			try
-			{
-				if(stmt != null)
-				{
-					stmt.close();
-					stmt = null;
-				}
-			}
-			catch(SQLException ex)
-			{
-				ex.printStackTrace();
-			}
-			try
-			{
-				if(con != null)
-				{
-					con.close();
-					con = null;
-				}
-			}
-			catch(SQLException ex)
-			{
-				ex.printStackTrace();
-			}
-			
 		}
 		System.out.println("done");
 	}
